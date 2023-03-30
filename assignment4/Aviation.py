@@ -114,26 +114,6 @@ class Aviation:
         return flights
 
     def findFlightBetween(self, origAirport, destAirport):
-<<<<<<< HEAD
-        airport1 = []
-        airport2 = []
-        direct_flight = None
-        connecting_airports = set()
-        for flight_list in self._allFlights.values():
-        #     for flight in flight_list:
-        #         if flight.getOrigin() == origAirport and flight.getDestination() == destAirport:
-        #             direct_flight = f"Direct Flight({flight.getFlightNumber()}): {origAirport.getCode()} to {destAirport.getCode()}"
-        #         if direct_flight:
-        #             return direct_flight
-
-
-
-             for flight1 in flight_list:
-                 if flight1.getOrigin() == origAirport or flight1.getDestination() == destAirport:
-                     airport1.append(flight1)
-        for i in airport1:
-            if(i[0].getOrigin()== origAirport)
-=======
         for flight_list in self._allFlights.values():
             for flight in flight_list:
                 if flight.getOrigin() == origAirport and flight.getDestination() == destAirport:
@@ -149,7 +129,7 @@ class Aviation:
             if(i.getOrigin()==origAirport and i.getDestination()!=destAirport):
                 for j in xAirport:
 
-                print(i)
+            print(i)
             print(i)
                     # print(flight1)
                     # for flight2 in flight_list:
