@@ -156,7 +156,11 @@ f2 = avi.findFlightBetween(avi.getAirportByCode("CPT"), avi.getAirportByCode("CD
 # print(avi.findFlightBetween(avi.getAirportByCode("LAX"), avi.getAirportByCode("DTW")))#debug
 # t1 = equals(f1, "Direct Flight(MTN376): PVG to YOW")#this code is passing a -1 to the equals function
 # print(t1,f1)#debug
+<<<<<<< HEAD
 # print(t2,f2)# debug
+=======
+print(t2,f2)# debug
+>>>>>>> 9603c79 (fuck)
 # t2 = f2 == -1
 # print(t2,f2)
 # if t1 and t2:
