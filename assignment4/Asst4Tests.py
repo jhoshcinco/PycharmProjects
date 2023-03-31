@@ -149,73 +149,86 @@ else:
 # # --------------- Test 8 - findFlightBetween() ---------------
 
 avi.loadData("airports.txt", flightsFileName, "countries.txt")
-# f1 = avi.findFlightBetween(avi.getAirportByCode("PVG"), avi.getAirportByCode("YOW"))
+f1 = avi.findFlightBetween(avi.getAirportByCode("PVG"), avi.getAirportByCode("YOW"))
 #print("test",avi.findFlightBetween(avi.getAirportByCode("PVG"), avi.getAirportByCode("YOW")))#debug
-# f2 = avi.findFlightBetween(avi.getAirportByCode("LAX"), avi.getAirportByCode("DTW"))
-f2 = avi.findFlightBetween(avi.getAirportByCode("CPT"), avi.getAirportByCode("CDG"))
+f2 = avi.findFlightBetween(avi.getAirportByCode("LAX"), avi.getAirportByCode("DTW"))
+# f2 = avi.findFlightBetween(avi.getAirportByCode("CPT"), avi.getAirportByCode("CDG"))#debug
 # print(avi.findFlightBetween(avi.getAirportByCode("LAX"), avi.getAirportByCode("DTW")))#debug
-# t1 = equals(f1, "Direct Flight(MTN376): PVG to YOW")#this code is passing a -1 to the equals function
+t1 = equals(f1, "Direct Flight(MTN376): PVG to YOW")#this code is passing a -1 to the equals function
 # print(t1,f1)#debug
-# t2 = f2 == -1
-# print(t2,f2)
-# if t1 and t2:
-#     print("Test 8 Passed. (findFlightBetween())")
-# else:
-#     print("Test 8 Failed. (findFlightBetween())")
+t2 = f2 == -1
+# print(t2,f2)#debug
+if t1 and t2:
+    print("Test 8 Passed. (findFlightBetween())")
+else:
+    print("Test 8 Failed. (findFlightBetween())")
 #print(f2,t2)debug
 
 # # --------------- Test 9 - findFlightBetween() ---------------
-#
-# avi.loadData("airports.txt", flightsFileName, "countries.txt")
-# f1 = avi.findFlightBetween(avi.getAirportByCode("LAX"), avi.getAirportByCode("MIA"))
-# t1 = isinstance(f1, set) and "CPT" in f1
-#
-# if t1:
-#     print("Test 9 Passed. (findFlightBetween())")
-# else:
-#     print("Test 9 Failed. (findFlightBetween())")
+
+avi.loadData("airports.txt", flightsFileName, "countries.txt")
+f1 = avi.findFlightBetween(avi.getAirportByCode("LAX"), avi.getAirportByCode("MIA"))
+t1 = isinstance(f1, set) and "CPT" in f1
+
+if t1:
+    print("Test 9 Passed. (findFlightBetween())")
+else:
+    print("Test 9 Failed. (findFlightBetween())")
 
 
 
 # # --------------- Test 10 - findReturnFlight() ---------------
 
-# # LOD619,MEX,LAX
-# # LOX618,LAX,MEX
+# LOD619,MEX,LAX
+# LOX618,LAX,MEX
 
-# # USO770,MEX,CPT
-# # USO771,CPT,MEX
+# USO770,MEX,CPT
+# USO771,CPT,MEX
 
-# #EKR896,SFO,YHZ
+#EKR896,SFO,YHZ
 
-# avi.loadData("airports.txt", flightsFileName, "countries.txt")
-# f1 = avi.findFlightByNo('LOD619')
-# f2 = avi.findFlightByNo('USO770')
-# f3 = avi.findFlightByNo('EKR896')
-# t1 = avi.findReturnFlight(f1)
-# t1 = avi.findReturnFlight(t1)
-# t2 = avi.findReturnFlight(f2)
-# t2 = avi.findReturnFlight(t2)
-# t3 = avi.findReturnFlight(f3)
-
-# if f1 == t1 and f2 == t2 and t3 == -1:
-#     print("Test 10 Passed. (findReturnFlight())")
-# else:
-#     print("Test 10 Failed. (findReturnFlight())")
+avi.loadData("airports.txt", flightsFileName, "countries.txt")
+f1 = avi.findFlightByNo('LOD619')
+# print(f1)#debug
+f2 = avi.findFlightByNo('USO770')
+# print(f2)#debug
+f3 = avi.findFlightByNo('EKR896') # will return false
+# print(f3)#debug
+t1 = avi.findReturnFlight(f1)
+# print(t1,"test")#debug
+# a0 = t1#this is to prove that code below wont really work
+# print(a0,"a0 test")#debug
+# t1 = avi.findReturnFlight(a0)#debugged
+# print(a0,"a0 test")#debug
+t1 = avi.findReturnFlight(t1)#well this wont really work becuase were setting itself to itself ?
+# print(t1,"test")#debug
+t2 = avi.findReturnFlight(f2)
+# a1=t2
+# print(a1,"a1 test")#debug
+# # print(a1,"test")
+# t2 = avi.findReturnFlight(a1)#debugged
+t2 = avi.findReturnFlight(t2)
+t3 = avi.findReturnFlight(f3)
+#
+if f1 == t1 and f2 == t2 and t3 == -1:
+    print("Test 10 Passed. (findReturnFlight())")
+else:
+    print("Test 10 Failed. (findReturnFlight())")
 
 
 
 # # --------------- Test 11 - findFlightsAcross() ---------------
-# avi.loadData("airports.txt", flightsFileName, "countries.txt")
-# res=avi.findFlightsAcross('Atlantic')
-# if res == {'XJX595', 'LJC201', 'DAJ762', 'MDW532', 'YZF667', 'JAG578', 'JKQ130', 'JHW048', 'YFZ738', 'CUN974', 'NIA196', 'VKG041', 'VIP930', 'YOF338', 'USO770', 'USO771'}:
-#     print("Test 11 Passed. (findFlightsAcross('Atlantic'))")
-# else:
-#     print("Test 11 Failed. (findFlightsAcross('Atlantic'))")
-
+avi.loadData("airports.txt", flightsFileName, "countries.txt")
+res=avi.findFlightsAcross('Atlantic')
+if res == {'XJX595', 'LJC201', 'DAJ762', 'MDW532', 'YZF667', 'JAG578', 'JKQ130', 'JHW048', 'YFZ738', 'CUN974', 'NIA196', 'VKG041', 'VIP930', 'YOF338', 'USO770', 'USO771'}:
+    print("Test 11 Passed. (findFlightsAcross('Atlantic'))")
+else:
+    print("Test 11 Failed. (findFlightsAcross('Atlantic'))")
+#
 # # --------------- Test 12 - findFlightsAcross() ---------------
-# avi.loadData("airports.txt", flightsFileName, "countries.txt")
-# res=avi.findFlightsAcross('Pacific')
-# if res == {'MTN376', 'QMG091', 'VDT680', 'CSY487', 'YOI104', 'TYV528', 'KPP582', 'CSX772', 'ERO171', 'PGY075', 'YVF322', 'EYS649'}:
-#     print("Test 12 Passed. (findFlightsAcross('Pacific'))")
-# else:
-#     print("Test 12 Failed. (findFlightsAcross('Pacific'))")
+avi.loadData("airports.txt", flightsFileName, "countries.txt")
+res=avi.findFlightsAcross('Pacific')
+if res == {'MTN376', 'QMG091', 'VDT680', 'CSY487', 'YOI104', 'TYV528', 'KPP582', 'CSX772', 'ERO171', 'PGY075', 'YVF322', 'EYS649'}:
+    print("Test 12 Passed. (findFlightsAcross('Pacific'))")
+else:
+    print("Test 12 Failed. (findFlightsAcross('Pacific'))")

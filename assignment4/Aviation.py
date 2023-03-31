@@ -97,12 +97,13 @@ class Aviation:
         for flight_list in self._allFlights.values():#iterates through the values of flight
             for flight in flight_list:#iterates through the flight list
                 if flight.getFlightNumber() == flightNo: #finds the flightobject with the flight number
+                    # print(flight.getFlightNumber(), flightNo)
                     return flight
-                #   print("flight found") debug
-
-                else:
-                    #    print("Flight not found")#debug
-                    return -1 #return -1 if not found
+                # #   print("flight found") debug
+                #
+                # else:
+                #     #    print("Flight not found")#debug
+                #     return -1 #return -1 if not found
 
 
     def findAllCountryFlights(self, country):
@@ -114,6 +115,7 @@ class Aviation:
         return flights
 
     def findFlightBetween(self, origAirport, destAirport):
+        connectingAirports = set()
         for flight_list in self._allFlights.values():
             for flight in flight_list:
                 if flight.getOrigin() == origAirport and flight.getDestination() == destAirport:
@@ -121,6 +123,7 @@ class Aviation:
 
             #check for connecting flights
             xAirport = []
+
         for flight_list in self._allFlights.values():
             for flight1 in flight_list:
                 if flight1.getOrigin() == origAirport or flight1.getDestination() == destAirport:
@@ -128,9 +131,21 @@ class Aviation:
         for i in xAirport:
             if(i.getOrigin()==origAirport and i.getDestination()!=destAirport):
                 for j in xAirport:
+                    if j.getDestination()==destAirport and j.getOrigin()==i.getDestination():
+                        # print(j.getOrigin().getCode())
+                        connectingAirports.add(j.getOrigin().getCode())
+        # for i in connectingAirports:
+        #     print(i)
+        if len(connectingAirports) > 0:
+            return connectingAirports
 
-            print(i)
-            print(i)
+
+
+
+        return -1
+
+            #
+            # print(i)
                     # print(flight1)
                     # for flight2 in flight_list:
                     #     if flight2.getDestination() == destAirport :
@@ -160,7 +175,7 @@ class Aviation:
         #              airport1.append(flight1)
         # for i in airport1:
         #     if(i[0].getOrigin()== origAirport)
->>>>>>> 9603c79 (fuck)
+# >>>>>>> 9603c79 (fuck)
                      # for flight2 in flight_list:
                      #     print(flight2)
                          # if flight2.getDestination() == destAirport:
@@ -293,43 +308,72 @@ class Aviation:
 #                         return "\n".join(connecting_flights)
 # #end of working code
 
+    def findReturnFlight(self,firstFlight):
+        # print(firstFlight.getOrigin(),firstFlight.getDestination(),"THis")#debug
+        return_flight = None
+        for flight_list in self._allFlights.values():
+            for flight in flight_list:
+                # print(flight)#debug
+                if flight.getDestination() == firstFlight.getOrigin() and flight.getOrigin() == firstFlight.getDestination():
+                    # print(flight.getOrigin(),flight.getDestination())#debug
+                    # print("return flight found")#debug
+                    return_flight = flight
+        if return_flight:
+            return return_flight
+        else:
+            return -1
+    def findFlightsAcross(self,ocean):
+        green = ["North America","South America"]
+        red = ["Asia","Australia"]
+        blue = ["Europe","Africa"]
+        flight_across = set()
+        for flight_list in self._allFlights.values():
+            for flight in flight_list:
+                if ocean == "Pacific":
+                    if (flight.getOrigin().getContinent() in red and flight.getDestination().getContinent() in green) or (flight.getOrigin().getContinent() in green and flight.getDestination().getContinent() in red):
+                    # print(flight.getFlightNumber())
+                       flight_across.add(flight.getFlightNumber())
+                elif ocean == "Atlantic":
+                    if (flight.getOrigin().getContinent() in blue and flight.getDestination().getContinent() in green) or (flight.getOrigin().getContinent() in green and flight.getDestination().getContinent() in blue):
+                        flight_across.add(flight.getFlightNumber())
+        return flight_across
 
-def findAllFlightsByContinent(self, continent):
-    flights = []
-    for flight_list in self._allFlights.values():
-        for flight in flight_list:
-            if flight.getOrigin().getContinent() == continent or flight.getDestination().getContinent() == continent:
-                flights.append(flight)
-    return flights
-
-
-def findShortestFlight(self):
-    shortest_flight = None
-    shortest_distance = float("inf")
-
-    for flight_list in self._allFlights.values():
-        for flight in flight_list:
-            distance = flight.calculateDistance()
-            if distance < shortest_distance:
-                shortest_distance = distance
-                shortest_flight = flight
-    return shortest_flight
-
-
-def findLongestFlight(self):
-    longest_flight = None
-    longest_distance = 0
-
-    for flight_list in self._allFlights.values():
-        for flight in flight_list:
-            distance = flight.calculateDistance()
-            if distance > longest_distance:
-                longest_distance = distance
-                longest_flight = flight
-    return longest_flight
-
-
-def printAllFlights(self):
-    for flight_list in self._allFlights.values():
-        for flight in flight_list:
-            print(flight)
+# def findAllFlightsByContinent(self, continent):
+#     flights = []
+#     for flight_list in self._allFlights.values():
+#         for flight in flight_list:
+#             if flight.getOrigin().getContinent() == continent or flight.getDestination().getContinent() == continent:
+#                 flights.append(flight)
+#     return flights
+#
+#
+# def findShortestFlight(self):
+#     shortest_flight = None
+#     shortest_distance = float("inf")
+#
+#     for flight_list in self._allFlights.values():
+#         for flight in flight_list:
+#             distance = flight.calculateDistance()
+#             if distance < shortest_distance:
+#                 shortest_distance = distance
+#                 shortest_flight = flight
+#     return shortest_flight
+#
+#
+# def findLongestFlight(self):
+#     longest_flight = None
+#     longest_distance = 0
+#
+#     for flight_list in self._allFlights.values():
+#         for flight in flight_list:
+#             distance = flight.calculateDistance()
+#             if distance > longest_distance:
+#                 longest_distance = distance
+#                 longest_flight = flight
+#     return longest_flight
+#
+#
+# def printAllFlights(self):
+#     for flight_list in self._allFlights.values():
+#         for flight in flight_list:
+#             print(flight)
